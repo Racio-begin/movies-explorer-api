@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 // Подключим модуль для хэширования пароля
 const bcrypt = require('bcryptjs');
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const isEmail = require('validator/lib/isEmail');
 
 const UnauthorizedError = require('../errors/UnauthorizedError');

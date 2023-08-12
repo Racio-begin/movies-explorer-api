@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
