@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // require('dotenv').config();
 
 const express = require('express');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const { errors } = require('celebrate');
 
@@ -15,6 +16,9 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
 
 const app = express();
+
+// защитить приложение от веб-уязвимостей
+app.use(helmet());
 
 // применить для всех роутов встроенный в express парсер (чтение тела запроса)
 app.use(express.json());
