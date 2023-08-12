@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
 const { errors } = require('celebrate');
+
+const cors = require('cors');
 
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -17,14 +19,24 @@ const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process
 
 const app = express();
 
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://giga-movies.nomoreparties.co',
+    'http://api.giga-movies.nomoreparties.co',
+  ],
+  credentials: true,
+}));
+
 // защитить приложение от веб-уязвимостей
 app.use(helmet());
 
-// применить для всех роутов встроенный в express парсер (чтение тела запроса)
-app.use(express.json());
-
 // подключаемся к базе данных
 mongoose.connect(DB_URL);
+
+// применить для всех роутов встроенный в express парсер (чтение тела запроса)
+app.use(express.json());
 
 // подключаем логгер запросов
 app.use(requestLogger);
