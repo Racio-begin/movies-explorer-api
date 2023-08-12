@@ -2,7 +2,6 @@
 const bcrypt = require('bcryptjs');
 
 // Подключим модуль для создания и проверки токенов
-// eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
 
 // Импортировать модель пользователя
@@ -70,6 +69,7 @@ const getUserInfo = (req, res, next) => {
     .catch(next);
 };
 
+// ОБНОВЛЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ //
 const updateUser = (req, res, next) => {
   // Вызвать метод findByIdAndUpdate, ищет пользователя по id и обновляет указанные поля
   const { name, about } = req.body;
@@ -108,6 +108,7 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
+// РАЗЛОГИРОВАНИЕ ПОЛЬЗОВАТЕЛЯ //
 const logout = (req, res) => {
   req.session.destroy(() => {
     res.send({ message: 'Выход пользователя.' });
