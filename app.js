@@ -4,6 +4,10 @@ const express = require('express');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const mongoose = require('mongoose');
 
+const { errors } = require('celebrate');
+
+const errorHandler = require('./middlewares/errorHandler');
+
 const routes = require('./routes/index');
 
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
@@ -18,6 +22,9 @@ mongoose.connect(DB_URL);
 
 // подключаем роуты
 app.use(routes);
+
+app.use(errors());
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
