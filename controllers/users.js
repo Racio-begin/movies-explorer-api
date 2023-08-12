@@ -1,5 +1,4 @@
 // Подключим модуль для хэширования пароля
-// eslint-disable-next-line import/no-unresolved
 const bcrypt = require('bcryptjs');
 
 // Подключим модуль для создания и проверки токенов
@@ -111,7 +110,7 @@ const login = (req, res, next) => {
 
 const logout = (req, res) => {
   req.session.destroy(() => {
-    res.send({ message: 'Выход пользователя' });
+    res.send({ message: 'Выход пользователя.' });
   });
 };
 
