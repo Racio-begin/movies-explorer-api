@@ -6,13 +6,13 @@ const {
 } = require('../middlewares/JoiValidator');
 
 const {
-  getAllMovies,
+  getUserMovies,
   createMovie,
   deleteMovie,
 } = require('../controllers/movies');
 
 // возвращает все сохранённые текущим пользователем фильмы
-moviesRouter.get('/movies', movieJoiValidation, getAllMovies);
+moviesRouter.get('/movies', movieJoiValidation, getUserMovies);
 
 // создаёт фильм с переданными в теле
 // country, director, duration, year, description,

@@ -9,8 +9,9 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
-const getAllMovies = (req, res, next) => {
-  Movie.find({})
+const getUserMovies = (req, res, next) => {
+  const userId = req.user._id;
+  Movie.find({ owner: userId })
     .then((movies) => res.send(movies))
     .catch(next);
 };
@@ -57,10 +58,10 @@ const createMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  const { MovieId } = req.params;
+  const { movieId } = req.params;
   const userId = req.user._id;
 
-  Movie.findById(MovieId)
+  Movie.findById(movieId)
     // eslint-disable-next-line consistent-return
     .then((movie) => {
       if (!movie) {
@@ -83,6 +84,6 @@ const deleteMovie = (req, res, next) => {
 
 module.exports = {
   createMovie,
-  getAllMovies,
+  getUserMovies,
   deleteMovie,
 };
