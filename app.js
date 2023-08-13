@@ -14,7 +14,8 @@ const routes = require('./routes/index');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
+// const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/bitfilmsdb' } = process.env;
+const config = require('./utils/config');
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use(cors({
 app.use(helmet());
 
 // подключаемся к базе данных
-mongoose.connect(DB_URL);
+mongoose.connect(config.DB_URL);
 
 // применить для всех роутов встроенный в express парсер (чтение тела запроса)
 app.use(express.json());
@@ -49,7 +50,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(config.PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`Сервер запущен на порту ${PORT}! :)`);
+  console.log(`Сервер запущен на порту ${config.PORT}! :)`);
 });
