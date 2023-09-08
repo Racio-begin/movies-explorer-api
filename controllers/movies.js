@@ -26,7 +26,7 @@ const createMovie = (req, res, next) => {
     image,
     trailerLink,
     thumbnail,
-    moviedId,
+    movieId,
     nameRU,
     nameEN,
   } = req.body;
@@ -42,7 +42,7 @@ const createMovie = (req, res, next) => {
     trailerLink,
     thumbnail,
     owner,
-    moviedId,
+    movieId,
     nameRU,
     nameEN,
   })
