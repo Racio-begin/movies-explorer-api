@@ -3,23 +3,6 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const movieSchema = new mongoose.Schema({
-  nameRU: {
-    type: String,
-    required: true,
-  },
-  nameEN: {
-    type: String,
-    required: true,
-  },
-  moviedId: {
-    type: Number,
-    required: true,
-  },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    // ref: 'user',
-  },
   country: {
     type: String,
     required: true,
@@ -63,6 +46,23 @@ const movieSchema = new mongoose.Schema({
       validator: (v) => validator.isURL(v),
       message: 'Некорректный URL миниатюры постера',
     },
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'user',
+  },
+  moviedId: {
+    type: Number,
+    required: true,
+  },
+  nameRU: {
+    type: String,
+    required: true,
+  },
+  nameEN: {
+    type: String,
+    required: true,
   },
 }, { versionKey: false });
 

@@ -18,9 +18,6 @@ const getUserMovies = (req, res, next) => {
 
 const createMovie = (req, res, next) => {
   const {
-    nameRU,
-    nameEN,
-    moviedId,
     country,
     director,
     duration,
@@ -29,13 +26,13 @@ const createMovie = (req, res, next) => {
     image,
     trailerLink,
     thumbnail,
+    moviedId,
+    nameRU,
+    nameEN,
   } = req.body;
   const owner = req.user._id;
 
   Movie.create({
-    nameRU,
-    nameEN,
-    moviedId,
     country,
     director,
     duration,
@@ -45,6 +42,9 @@ const createMovie = (req, res, next) => {
     trailerLink,
     thumbnail,
     owner,
+    moviedId,
+    nameRU,
+    nameEN,
   })
     .then((movie) => {
       res.status(CREATED_STATUS).send(movie);

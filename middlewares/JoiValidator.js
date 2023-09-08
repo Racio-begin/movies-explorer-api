@@ -26,10 +26,6 @@ const updateUserInfoJoiValidation = celebrate({
 
 const movieJoiValidation = celebrate({
   body: Joi.object().keys({
-    nameRU: Joi.string().required(),
-    nameEN: Joi.string().required(),
-    moviedId: Joi.number().required(),
-    // owner:
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
@@ -38,6 +34,10 @@ const movieJoiValidation = celebrate({
     image: Joi.string().required().regex(RegExUrl),
     trailerLink: Joi.string().required().regex(RegExUrl),
     thumbnail: Joi.string().required().regex(RegExUrl),
+    moviedId: Joi.number().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+    // owner:
   }),
 });
 
