@@ -25,6 +25,8 @@ app.use(cors({
     'http://localhost:3001',
     'http://giga-movies.nomoreparties.co',
     'http://api.giga-movies.nomoreparties.co',
+    'https://giga-movies.nomoreparties.co',
+    'https://api.giga-movies.nomoreparties.co',
   ],
   credentials: true,
 }));
