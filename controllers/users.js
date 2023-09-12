@@ -72,10 +72,10 @@ const getUserInfo = (req, res, next) => {
 // ОБНОВЛЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ //
 const updateUser = (req, res, next) => {
   // Вызвать метод findByIdAndUpdate, ищет пользователя по id и обновляет указанные поля
-  const { name, about } = req.body;
+  const { name, email } = req.body;
   const userId = req.user._id;
 
-  User.findByIdAndUpdate(userId, { name, about }, {
+  User.findByIdAndUpdate(userId, { name, email }, {
     // обработчик then получит на вход обновлённую запись
     new: true,
     // данные будут валидированы перед изменением
